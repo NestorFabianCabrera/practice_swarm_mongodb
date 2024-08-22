@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CRUD with Flask and MongoDB</title>
+    <title>CRUD Simio</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -61,39 +61,52 @@
         }
         ul li form {
             margin: 0;
+            display: flex;
         }
         ul li form button {
             background-color: #dc3545;
-            margin-left: 5px;
+            margin-left: 10px;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 12px;
+            cursor: pointer;
+            color: white;
         }
         ul li form input[type="text"] {
             width: auto;
-            margin-right: 5px;
+            margin-right: 10px;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .asd1 {
+            margin: 3px;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Items</h1>
+        <h1>CRUD Items</h1>
         <form action="/add" method="post">
-            <input type="text" name="name" placeholder="Name" required>
-            <input type="text" name="value" placeholder="Value" required>
-            <button type="submit">Add Item</button>
+            <input type="text" name="name" placeholder="Nombre" required class="asd1">
+            <input type="text" name="value" placeholder="Precio" required class="asd1">
+            <button type="submit">Nuevo Item</button>
         </form>
+        
         <ul>
             {% for item in items %}
                 <li>
-                    <form action="/edit/{{ item._id }}" method="post" style="display:inline;">
+                    <form action="/edit/{{ item._id }}" method="post">
                         <input type="text" name="name" value="{{ item.name }}" required>
                         <input type="text" name="value" value="{{ item.value }}" required>
-                        <button type="submit">Edit</button>
+                        <button type="submit" style="background-color: #007bff;">Editar Item</button>
                     </form>
-                    <form action="/delete/{{ item._id }}" method="post" style="display:inline;">
-                        <button type="submit">Delete</button>
+                    <form action="/delete/{{ item._id }}" method="post">
+                        <button type="submit">Eliminar</button>
                     </form>
                 </li>
             {% endfor %}
-        </ul>
+        </ul>        
     </div>
 </body>
 </html>

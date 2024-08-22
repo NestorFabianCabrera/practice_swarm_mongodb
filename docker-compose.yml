@@ -1,8 +1,17 @@
 services:
   web:
-    build: .
+    image: img_pymongo
     ports:
       - "5000:5000"
+    deploy:
+      replicas: 4
+      update_config:
+        parallelism: 2
+        delay: 5s
+        monitor: 20s
+      placement:
+        constraints:
+          - node.labels.tipo == node_pymongo
     depends_on:
       - mongo
 
